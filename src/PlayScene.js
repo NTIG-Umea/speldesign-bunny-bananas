@@ -2,6 +2,10 @@ import Phaser from 'phaser';
 
 export default class PlayScene extends Phaser.Scene {
   constructor () {
+    var player;
+    var stars;
+    var platforms;
+    var cursors;
     super({
       key: 'play',
       physics: {
@@ -13,34 +17,96 @@ export default class PlayScene extends Phaser.Scene {
     });
   }
 
-  create () {
-    this.add.image(400, 300, 'space');
+  create ()
+    {
+     
+  
+        this.add.image(400, 300, 'sky');
 
-    var emitter = this.add.particles('red')
-      .createEmitter({
-        speed: 100,
-        scale: { start: 1, end: 0 },
-        blendMode: 'ADD'
-      });
+        this.platforms = this.physics.add.staticGroup();
 
-    var logo = this.physics.add.image(400, 100, 'logo')
-      .setVelocity(100, 200)
-      .setBounce(1, 1)
-      .setCollideWorldBounds(true);
+        this.platforms.create(400, 568, 'ground').setScale(2).refreshBody();
 
-    emitter.startFollow(logo);
+        this.platforms.create(600, 400, 'ground');
+        this.platforms.create(50, 250, 'ground');
+        this.platforms.create(750, 220, 'ground');
 
-    this.input.keyboard
-      .on('keydown-R', function () {
-        this.scene.restart();
-      }, this)
-      .on('keydown-Q', function () {
-        this.scene.stop().run('menu');
-      }, this)
-      .on('keydown-K', function () {
-        this.scene.stop().run('end');
-      }, this);
-  }
+        this.player = this.physics.add.sprite(100, 450, 'dude');
 
-  update () {}
+        this.player.setBounce(0.4);
+        this.player.setCollideWorldBounds(true);
+
+        this.anims.create({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'turn',
+            frames: [ { key: 'dude', frame: 4 } ],
+            frameRate: 20
+        });
+
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.cursors = this.input.keyboard.createCursorKeys();
+
+        this.stars = this.physics.add.group({
+            key: 'star',
+            repeat: 400,
+            setXY: { x: 12, y: 0, stepX: 3 }
+        });
+
+        this.stars.children.iterate(function (child) {
+
+            child.setBounceY(Phaser.Math.FloatBetween(0.6, 1));
+
+        });
+
+        this.physics.add.collider(this.player, this.platforms);
+        this.physics.add.collider(this.stars, this.platforms);
+
+        this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
+    }
+
+   update ()
+    { /*
+        if (this.cursors.left.isDown)
+        {
+            this.player.setVelocityX(-160);
+
+            this.player.anims.play('left', true);
+        }
+        else if (this.cursors.right.isDown)
+        {
+            this.player.setVelocityX(160);
+
+            this.player.anims.play('right', true);
+        }
+        else
+        {
+            this.player.setVelocityX(0);
+
+            this.player.anims.play('turn');
+        }
+
+        if (this.cursors.up.isDown && this.player.body.touching.down)
+        {
+            this.player.setVelocityY(-330);
+        }
+      */  }
+
+     collectStar (player, star)
+    {
+        star.disableBody(true, true);
+    }
+
 }
+

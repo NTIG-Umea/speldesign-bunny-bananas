@@ -13,3 +13,23 @@ export default {
   banner: { text: 'white', background: ['#FD7400', '#FFE11A', '#BEDB39', '#1F8A70', '#004358'] },
   scene: [BootScene, MenuScene, PlayScene, EndScene]
 };
+
+/*
+ var config = {
+  type: Phaser.AUTO,
+  width: 800,
+  height: 600,
+  physics: {
+      default: 'arcade',
+      arcade: {
+          gravity: { y: 300 },
+          debug: false
+      }
+  },
+  scene: {
+      preload: preload,
+      create: create,
+      update: update
+  }
+};
+  */
