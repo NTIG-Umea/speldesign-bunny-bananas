@@ -1,33 +1,143 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Phaser3 - ES6 - Webpack</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta http-equiv="cleartype" content="on">
-    <meta name="format-detection" content="telephone=no">
-    <style>
-        html,
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" />
+    <title>Making your first Phaser 3 Game - Part 8</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
         body {
-          margin: 0;
-          padding: 0;
-             image-rendering: optimizeSpeed;              /* Older versions of FF */
-          image-rendering: -moz-crisp-edges;           /* FF 6.0+ */
-          image-rendering: -webkit-optimize-contrast;  /* Webkit (non standard naming) */
-          image-rendering: -o-crisp-edges;             /* OS X & Windows Opera (12.02+) */
-          image-rendering: crisp-edges;                /* Possible future browsers. */
-          -ms-interpolation-mode: nearest-neighbor;    /* IE (non standard naming) */
-          image-rendering: pixelated;                  /* Chrome 41 */
+            margin: 0;
         }
     </style>
 </head>
+<body>
 
-<body style="background-color: black;">
-    <div style="text-align: center"><span style="color: white;">Phaser 3 Generic Platformer example</span> | <a href="javascript:toggleTouch()">Show/hide touch controls</a> | <a href="https://github.com/nkholski/phaser3-es6-webpack">Source code on Github (migth be ahead/behind this example)</a> | <a href="https://github.com/nkholski/phaser-animated-tiles">Animated tiles plugin</a></div>
-    <div id="content" style="display: block; width: 100%; text-align: center"></div>
+<script type="text/javascript">
 
-<script type="text/javascript" src="./dev/vendor.js"></script><script type="text/javascript" src="./dev/app.js"></script></body>
+    var config = {
+        type: Phaser.AUTO,
+        width: 800,
+        height: 600,
+        physics: {
+            default: 'arcade',
+            arcade: {
+                gravity: { y: 300 },
+                debug: false
+            }
+        },
+        scene: {
+            preload: preload,
+            create: create,
+            update: update
+        }
+    };
+
+    var player;
+    var stars;
+    var platforms;
+    var cursors;
+
+    var game = new Phaser.Game(config);
+
+    function preload ()
+    {
+        this.load.image('sky', 'assets/sky.png');
+        this.load.image('ground', 'assets/platform.png');
+        this.load.image('star', 'assets/star.png');
+        this.load.image('bomb', 'assets/bomb.png');
+        this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+    }
+
+    function create ()
+    {
+        this.add.image(400, 300, 'sky');
+
+        platforms = this.physics.add.staticGroup();
+
+        platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+
+        platforms.create(600, 400, 'ground');
+        platforms.create(50, 250, 'ground');
+        platforms.create(750, 220, 'ground');
+
+        player = this.physics.add.sprite(100, 450, 'dude');
+
+        player.setBounce(0.4);
+        player.setCollideWorldBounds(true);
+
+        this.anims.create({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'turn',
+            frames: [ { key: 'dude', frame: 4 } ],
+            frameRate: 20
+        });
+
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        cursors = this.input.keyboard.createCursorKeys();
+
+        stars = this.physics.add.group({
+            key: 'star',
+            repeat: 400,
+            setXY: { x: 12, y: 0, stepX: 3 }
+        });
+
+        stars.children.iterate(function (child) {
+
+            child.setBounceY(Phaser.Math.FloatBetween(0.6, 1));
+
+        });
+
+        this.physics.add.collider(player, platforms);
+        this.physics.add.collider(stars, platforms);
+
+        this.physics.add.overlap(player, stars, collectStar, null, this);
+    }
+
+    function update ()
+    {
+        if (cursors.left.isDown)
+        {
+            player.setVelocityX(-160);
+
+            player.anims.play('left', true);
+        }
+        else if (cursors.right.isDown)
+        {
+            player.setVelocityX(160);
+
+            player.anims.play('right', true);
+        }
+        else
+        {
+            player.setVelocityX(0);
+
+            player.anims.play('turn');
+        }
+
+        if (cursors.up.isDown && player.body.touching.down)
+        {
+            player.setVelocityY(-330);
+        }
+    }
+
+    function collectStar (player, star)
+    {
+        star.disableBody(true, true);
+    }
+
+</script>
+
+</body>
 </html>
