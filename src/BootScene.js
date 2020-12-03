@@ -12,11 +12,15 @@ export default class BootScene extends Phaser.Scene {
 
     console.table(images);
 
-    this.load.image('sky', 'images.sky');
-    this.load.image('ground', 'images.platform');
-    this.load.image('star', 'images.star');
-    this.load.image('bomb', 'images.bomb');
-    this.load.spritesheet('dude', 'images.dude', { frameWidth: 32, frameHeight: 48 });
+    this.load.image('space', images.space);
+    this.load.image('logo', images.logo);
+    this.load.image('red', images.red);
+
+    this.load.image('sky', images.sky);
+    this.load.image('ground', images.platform);
+    this.load.image('star', images.star);
+    this.load.image('bomb', images.bomb);
+    this.load.spritesheet('dude', images.dude, { frameWidth: 32, frameHeight: 48 });
 
     this.load.on('progress', function (progress) {
       bar.setScale(progress, 1);

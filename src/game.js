@@ -75,8 +75,8 @@ import Phaser from 'phaser';
 
         stars = this.physics.add.group({
             key: 'star',
-            repeat: 400,
-            setXY: { x: 12, y: 0, stepX: 3 }
+            repeat: 13,
+            setXY: { x: 12, y: 0, stepX: 12 }
         });
 
         stars.children.iterate(function (child) {
