@@ -1,0 +1,61 @@
+{
+	"textures": [
+		{
+			"image": "tomte_walk-1.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 64,
+				"h": 64
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "tomte_walk_6.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 14,
+						"y": 0,
+						"w": 35,
+						"h": 64
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 35,
+						"h": 64
+					}
+				},
+				{
+					"filename": "tomte_walk_3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 17,
+						"y": 0,
+						"w": 29,
+						"h": 64
+					},
+					"frame": {
+						"x": 35,
+						"y": 0,
+						"w": 29,
+						"h": 64
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}
