@@ -34,7 +34,7 @@ export default class PlayScene extends Phaser.Scene {
     this.enemy = this.physics.add.sprite(200, 450, 'tomte');
     this.enemy.setCollideWorldBounds(true);
     this.physics.add.collider(this.enemy, this.platforms);
-    this.enemy.setBounce(1);
+    this.enemy.setBounce(0.2);
 
     // The player and its settings
     this.player = this.physics.add.sprite(100, 450, 'dude');
