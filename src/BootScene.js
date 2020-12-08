@@ -14,7 +14,7 @@ export default class BootScene extends Phaser.Scene {
     console.table(images);
     console.table(enemies);
 
-    this.load.image('tomte', images.tomte_walk_4);
+    this.load.image('tomte', images.tomte_walk_0);
     this.load.image('sky', images.sky);
     this.load.image('ground', images.platform);
     this.load.image('star', images.star);

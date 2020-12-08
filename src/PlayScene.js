@@ -18,13 +18,15 @@ export default class PlayScene extends Phaser.Scene {
     this.gameOver = false;
     this.score = 0;
     //  A simple background for our game
-    this.add.image(400, 300, 'sky');
+    // this.add.image(400, 300, 'sky');
+    this.bg = this.add.image(400, 300, 'sky');
+    this.bg.setScrollFactor(0); 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     this.platforms = this.physics.add.staticGroup();
     
     //  Here we create the ground.
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    this.platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+    this.platforms.create(2000, 568, 'ground').setScale(20, 2).refreshBody();
 
     //  Now let's create some ledges
     this.platforms.create(600, 400, 'ground');
@@ -32,7 +34,7 @@ export default class PlayScene extends Phaser.Scene {
     this.platforms.create(750, 220, 'ground');
 
     this.enemy = this.physics.add.sprite(200, 450, 'tomte');
-    this.enemy.setCollideWorldBounds(true);
+    this.enemy.setCollideWorldBounds(false);
     this.physics.add.collider(this.enemy, this.platforms);
     this.enemy.setBounce(1);
 
@@ -41,8 +43,13 @@ export default class PlayScene extends Phaser.Scene {
 
     //  Player physics properties. Give the little guy a slight bounce.
     this.player.setBounce(0.4);
-    this.player.setCollideWorldBounds(true);
+    this.player.setCollideWorldBounds(false);
     this.physics.add.collider(this.player, this.enemy);
+
+    // kamera som följer spelaren på x
+    this.camera = this.cameras.main;
+    this.camera.setBounds(-1000, 0, 5000, 600); // lite random "värld-bounds"
+    this.camera.startFollow(this.player);
 
     //  Our player animations, turning, walking left and walking right.
     this.anims.create({
@@ -102,16 +109,17 @@ export default class PlayScene extends Phaser.Scene {
     // {
     //     return;
     // }
+    let speed = 400;
 
     if (this.cursors.left.isDown)
     {
-      this.player.setVelocityX(-200);
+      this.player.setVelocityX(-speed);
 
       this.player.anims.play('left', true);
     }
     else if (this.cursors.right.isDown)
     {
-      this.player.setVelocityX(200);
+      this.player.setVelocityX(speed);
 
       this.player.anims.play('right', true);
     }
