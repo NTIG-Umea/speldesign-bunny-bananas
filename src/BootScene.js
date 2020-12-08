@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import images from './assets/*.png';
+import enemies from '/assets/enemies/*.png';
 
 export default class BootScene extends Phaser.Scene {
   constructor () {
@@ -11,11 +12,9 @@ export default class BootScene extends Phaser.Scene {
     var bar = this.add.rectangle(bg.x, bg.y, bg.width, bg.height, 0xffffff).setScale(0, 1);
 
     console.table(images);
+    console.table(enemies);
 
-    this.load.image('space', images.space);
-    this.load.image('logo', images.logo);
-    this.load.image('red', images.red);
-
+    this.load.image('tomte', images.tomte_walk_4);
     this.load.image('sky', images.sky);
     this.load.image('ground', images.platform);
     this.load.image('star', images.star);

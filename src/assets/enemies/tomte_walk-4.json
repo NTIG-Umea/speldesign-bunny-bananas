@@ -1,0 +1,40 @@
+{
+	"textures": [
+		{
+			"image": "tomte_walk-4.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 46,
+				"h": 61
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "tomte_walk_5.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 9,
+						"y": 2,
+						"w": 46,
+						"h": 61
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 46,
+						"h": 61
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}
