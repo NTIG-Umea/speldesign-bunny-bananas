@@ -37,7 +37,7 @@ export default class PlayScene extends Phaser.Scene {
     this.enemy.setBounce(0.2);
 
     // The player and its settings
-    this.player = this.physics.add.sprite(100, 450, 'dude');
+    this.player = this.physics.add.sprite(100, 450, 'prast');
 
     //  Player physics properties. Give the little guy a slight bounce.
     this.player.setBounce(0.2);
@@ -47,7 +47,7 @@ export default class PlayScene extends Phaser.Scene {
     //  Our player animations, turning, walking left and walking right.
     this.anims.create({
         key: 'left',
-        frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+        frames: this.anims.generateFrameNumbers('prast', { start: 0, end: 3 }),
         frameRate: 10,
         repeat: -1
     });
