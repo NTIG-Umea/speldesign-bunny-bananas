@@ -18,6 +18,7 @@
   "author": "samme",
   "license": "ISC",
   "dependencies": {
+    "parcel-plugin-static-files-copy": "^2.5.0",
     "phaser": "^3.24.1"
   },
   "devDependencies": {
