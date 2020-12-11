@@ -6,7 +6,7 @@ export default class PlayScene extends Phaser.Scene {
       key: 'play',
       physics: {
         arcade: {
-          gravity: { y: 300 },
+          gravity: { y: 800 },
           debug: false
         }
       }
@@ -14,35 +14,54 @@ export default class PlayScene extends Phaser.Scene {
   }
 
   create () {
+    
     this.gameOver = false;
     this.score = 0;
     //  A simple background for our game
-    this.add.image(400, 300, 'sky');
-
+    // this.add.image(400, 300, 'sky');
+    this.bg = this.add.image(400, 300, 'sky');
+    this.bg.setScrollFactor(0); 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     this.platforms = this.physics.add.staticGroup();
-
+    
     //  Here we create the ground.
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    this.platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+    this.platforms.create(2000, 568, 'ground').setScale(20, 2).refreshBody();
 
     //  Now let's create some ledges
     this.platforms.create(600, 400, 'ground');
     this.platforms.create(50, 250, 'ground');
     this.platforms.create(750, 220, 'ground');
+    this.platforms.create(1500, 200, 'ground');
+    this.platforms.create(1700, 390, 'ground');
+    this.platforms.create(2500, 400, 'ground');
+    this.platforms.create(3100, 400, 'ground');
+    this.platforms.create(3500, 250, 'ground');
+    this.platforms.create(4000, 220, 'ground');
+
+
 
     this.enemy = this.physics.add.sprite(200, 450, 'tomte');
-    this.enemy.setCollideWorldBounds(true);
+    this.enemy.setCollideWorldBounds(false);
     this.physics.add.collider(this.enemy, this.platforms);
     this.enemy.setBounce(0.2);
 
+
+
+
     // The player and its settings
-    this.player = this.physics.add.sprite(100, 450, 'prast');
+    this.player = this.physics.add.sprite( 2000, 450, 'prast');
+
 
     //  Player physics properties. Give the little guy a slight bounce.
-    this.player.setBounce(0.2);
-    this.player.setCollideWorldBounds(true);
+    this.player.setBounce(0.4);
+    this.player.setCollideWorldBounds(false);
     this.physics.add.collider(this.player, this.enemy);
+
+    // kamera som följer spelaren på x
+    this.camera = this.cameras.main;
+    this.camera.setBounds(-1000, 0, 5000, 600); // lite random "värld-bounds"
+    this.camera.startFollow(this.player);
 
     //  Our player animations, turning, walking left and walking right.
 
@@ -81,7 +100,7 @@ export default class PlayScene extends Phaser.Scene {
 
     //  Input Events
     this.cursors = this.input.keyboard.createCursorKeys();
-
+    /*
     //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
     this.stars = this.physics.add.group({
         key: 'star',
@@ -99,34 +118,34 @@ export default class PlayScene extends Phaser.Scene {
     this.bombs = this.physics.add.group();
 
     //  The score
-    this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
-
+    // this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+*/
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(this.player, this.platforms);
-    this.physics.add.collider(this.stars, this.platforms);
-    this.physics.add.collider(this.bombs, this.platforms);
+    //this.physics.add.collider(this.stars, this.platforms);
+    //this.physics.add.collider(this.bombs, this.platforms);
 
-    // //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-    this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
+    //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
+    // this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
 
-    this.physics.add.collider(this.player, this.bombs, this.hitBomb, null, this);
+    //this.physics.add.collider(this.player, this.bombs, this.hitBomb, null, this);s
   }
-
   update () {
     // if (this.gameOver)
     // {
     //     return;
     // }
+    let speed = 400;
 
     if (this.cursors.left.isDown)
     {
-      this.player.setVelocityX(-160);
+      this.player.setVelocityX(-speed);
 
       this.player.anims.play('left', true);
     }
     else if (this.cursors.right.isDown)
     {
-      this.player.setVelocityX(160);
+      this.player.setVelocityX(speed);
 
       this.player.anims.play('right', true);
     }
@@ -139,10 +158,10 @@ export default class PlayScene extends Phaser.Scene {
 
     if (this.cursors.up.isDown && this.player.body.touching.down)
     {
-      this.player.setVelocityY(-330);
+      this.player.setVelocityY(-560);
     }
   }
-
+/*
   collectStar (player, star)
   {
     star.disableBody(true, true);
@@ -180,5 +199,5 @@ export default class PlayScene extends Phaser.Scene {
       player.anims.play('turn');
 
       this.gameOver = true;
-  }
+  }*/
 }

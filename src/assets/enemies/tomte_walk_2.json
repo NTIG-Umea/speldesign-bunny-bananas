@@ -1,7 +1,7 @@
 {
 	"textures": [
 		{
-			"image": "tomte_walk-2.png",
+			"image": "tomte_walk_2.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 58,
