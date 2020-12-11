@@ -23,6 +23,7 @@ export default class BootScene extends Phaser.Scene {
     // this.load.spritesheet('dude', images.dude, { frameWidth: 32, frameHeight: 48 });
     //this.load.multiatlas('tomteWalk', jsons.tomte_walk, enemies);
     this.load.multiatlas('prast', 'assets/prast_walk.json', 'assets/')
+    this.load.multiatlas('attack', 'assets/prast_attack_book.json', 'assets/')
 
 
     this.load.on('progress', function (progress) {
