@@ -45,9 +45,23 @@ export default class PlayScene extends Phaser.Scene {
     this.physics.add.collider(this.player, this.enemy);
 
     //  Our player animations, turning, walking left and walking right.
+
+    this.anims.create({
+      key: 'idle',
+      frames: this.anims.generateFrameNames('necromancer', {
+        frames: [
+          'necromancer_idle_anim_f0',
+          'necromancer_idle_anim_f1',
+          'necromancer_idle_anim_f2',
+          'necromancer_idle_anim_f3']
+      }),
+      frameRate: 5,
+      repeat: -1
+    });
+    
     this.anims.create({
         key: 'left',
-        frames: this.anims.generateFrameNumbers('prast', { start: 0, end: 3 }),
+        frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
         frameRate: 10,
         repeat: -1
     });
