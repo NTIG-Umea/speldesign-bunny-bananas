@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import images from './assets/*.png';
 import enemies from '/assets/enemies/*.png';
+import jsons from './assets/enemies/*.json';
 
 export default class BootScene extends Phaser.Scene {
   constructor () {
@@ -14,12 +15,15 @@ export default class BootScene extends Phaser.Scene {
     console.table(images);
     console.table(enemies);
 
-    this.load.image('tomte', images.tomte_walk_0);
+
     this.load.image('sky', images.sky);
     this.load.image('ground', images.platform);
     this.load.image('star', images.star);
     this.load.image('bomb', images.bomb);
     this.load.spritesheet('dude', images.dude, { frameWidth: 32, frameHeight: 48 });
+    this.load.multiatlas('tomteWalk', jsons.tomte_walk, enemies);
+    this.load.multiatlas('prast', assets/prastWalk.json)
+
 
     this.load.on('progress', function (progress) {
       bar.setScale(progress, 1);
