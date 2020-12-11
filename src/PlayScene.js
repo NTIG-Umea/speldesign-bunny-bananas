@@ -30,7 +30,7 @@ export default class PlayScene extends Phaser.Scene {
     //  Now let's create some ledges
     this.platforms.create(600, 400, 'ground');
     this.platforms.create(50, 250, 'ground');
-    this.platforms.create(750, 220, 'ground');
+    this.platforms.create(800, 220, 'ground');
     this.platforms.create(1500, 200, 'ground');
     this.platforms.create(1700, 390, 'ground');
     this.platforms.create(2500, 400, 'ground');
