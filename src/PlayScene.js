@@ -73,6 +73,17 @@ export default class PlayScene extends Phaser.Scene {
       repeat: -1
     });
 
+
+    this.anims.create({
+      key: 'attack',
+      frames: this.anims.generateFrameNames('attack', {
+        prefix: 'prast_',
+        start: 0, end: 13
+      }),
+      frameRate: 10,
+      repeat: 1
+    })
+
     //  Input Events
     this.cursors = this.input.keyboard.createCursorKeys();
     /*

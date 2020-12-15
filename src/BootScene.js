@@ -18,8 +18,11 @@ export default class BootScene extends Phaser.Scene {
     this.load.image('star', images.star);
     this.load.image('bomb', images.bomb);
     this.load.multiatlas('prast', 'assets/prast_walk.json', 'assets/')
+
     this.load.multiatlas('Nisse', 'assets/Nisse.json', 'assets/')
 
+    this.load.multiatlas('attack', 'assets/prast_attack_book.json', 'assets/')
+ 
     this.load.on('progress', function (progress) {
       bar.setScale(progress, 1);
     });
