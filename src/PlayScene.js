@@ -40,7 +40,7 @@ export default class PlayScene extends Phaser.Scene {
 
 
 
-    this.enemy = this.physics.add.sprite(200, 450, 'tomte');
+    this.enemy = this.physics.add.sprite(200, 450, 'Nisse','Nisse_walk_0');
     this.enemy.setCollideWorldBounds(false);
     this.physics.add.collider(this.enemy, this.platforms);
     this.enemy.setBounce(0.2);
@@ -48,7 +48,7 @@ export default class PlayScene extends Phaser.Scene {
 
 
     // The player and its settings
-    this.player = this.physics.add.sprite(2000, 450, 'prast', '0');
+    this.player = this.physics.add.sprite(2000, 450, 'prast', '2').setScale(1.1);
 
 
     //  Player physics properties. Give the little guy a slight bounce.
