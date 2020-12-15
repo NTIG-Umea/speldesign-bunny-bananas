@@ -78,10 +78,10 @@ export default class PlayScene extends Phaser.Scene {
       key: 'attack',
       frames: this.anims.generateFrameNames('attack', {
         prefix: 'prast_',
-        start: 0, end: 13
+        start: 0, end: 12
       }),
       frameRate: 10,
-      repeat: 1
+      repeat: -1
     })
 
     //  Input Events
@@ -143,6 +143,11 @@ export default class PlayScene extends Phaser.Scene {
     {
       this.player.setVelocityY(-560);
     }
+    if (this.cursors.space.isDown)
+    {
+      this.player.anims.play('attack');
+    }
+      
   }
 /*
   collectStar (player, star)
