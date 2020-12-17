@@ -143,7 +143,7 @@ export default class PlayScene extends Phaser.Scene {
     {
       this.player.setVelocityY(-560);
     }
-    if (this.cursors.space.isDown)
+    if (Phaser.Input.Keyboard.JustDown(this.cursors.space))
     {
       this.player.anims.play('attack');
     }
