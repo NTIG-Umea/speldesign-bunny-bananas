@@ -18,7 +18,7 @@ export default class PlayScene extends Phaser.Scene {
     this.gameOver = false;
     this.score = 0;
     //  A simple background for our game
-    this.bg = this.add.image(400, 300, 'sky');
+    this.bg = this.add.image(400, 300,'bg');
     this.bg.setScrollFactor(0); 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     this.platforms = this.physics.add.staticGroup();
