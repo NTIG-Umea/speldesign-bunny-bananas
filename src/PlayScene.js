@@ -65,7 +65,7 @@ export default class PlayScene extends Phaser.Scene {
     });
 
 
-    this.anims.create({
+      this.anims.create({
       key: 'attack',
       frames: this.anims.generateFrameNames('attack', {
         prefix: 'prast_',
