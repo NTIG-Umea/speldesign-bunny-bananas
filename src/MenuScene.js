@@ -6,11 +6,11 @@ export default class MenuScene extends Phaser.Scene {
   }
 
   create () {
-    this.add.image(400, 300, 'space');
+    this.add.image(400, 300, 'bg');
 
-    this.add.text(400, 200, 'Phaser 3 with Parcel\n\n< play >', {
+    this.add.text(400, 200, 'Prästen tar över julen\n\n  Start ', {
       align: 'center',
-      fill: 'white',
+      fill: 'black',
       fontFamily: 'sans-serif',
       fontSize: 48
     })

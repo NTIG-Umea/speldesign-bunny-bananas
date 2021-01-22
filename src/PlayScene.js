@@ -94,7 +94,7 @@ export default class PlayScene extends Phaser.Scene {
     this.bombs = this.physics.add.group();
 
     //  The score
-    this.scoreText = this.add.text(2000 , 16 , 'score: 0', { fontSize: '32px', fill: '#000' });
+    this.scoreText = this.add.text(1900 , 16 , 'score: 0', { fontSize: '32px', fill: '#000' });
 
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(this.player, this.platforms);
