@@ -80,7 +80,7 @@ export default class PlayScene extends Phaser.Scene {
     
     //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
     this.stars = this.physics.add.group({
-        key: 'present',
+        key: 'redpresent',
         repeat: 23,
         setXY: { x: 12, y: 0, stepX: 150 }
     });
