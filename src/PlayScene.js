@@ -14,7 +14,7 @@ export default class PlayScene extends Phaser.Scene {
   }
 
   create () {
-    
+    this.time = 5000;
     this.gameOver = false;
     this.score = 0;
     //  A simple background for our game
@@ -130,8 +130,11 @@ export default class PlayScene extends Phaser.Scene {
     {
       this.player.setVelocityY(-560);
     }
+    this.time -= 1;
+    if (this.time < 1){
+      this.scene.start('End');
+    }
   }
-
   collectStar (player, star)
   {
     star.disableBody(true, true);
