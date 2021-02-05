@@ -1,9 +1,11 @@
 import Phaser from 'phaser';
+import Hiscore from '../Hiscore.js';
 import gameConfig from './gameConfig.js';
 
 function newGame () {
   if (game) return;
   game = new Phaser.Game(gameConfig);
+  game.score = 0;
 }
 
 function destroyGame () {
